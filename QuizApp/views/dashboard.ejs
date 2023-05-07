@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/d.css">
+    <title>Quiz Builder</title>
+</head>
+<body>
+
+<header>
+  <h1>Quiz Maker</h1>
+  <a href="/users/logout" style="color: #fff; text-decoration: none;" class="log">Logout</a>
+</header>  
+
+<div class="container">
+<p><%= user.name %> Lets get your day started and create the quizzes you need.</p>
+</div>
+
+
+
+<div>
+  <div class="container">
+    <h1>Quizzes</h1>
+    <ul>
+      <% quizzes.forEach(quiz => { %>
+        <li>
+          <%= quiz.title %>
+          <form action="/quiz/<%= quiz._id %>/delete" method="POST">
+            <button type="submit">Delete</button>
+          </form>
+          <a href="/quiz/<%= quiz._id %>/edit">
+            <button>Answer Key</button>
+          </a>
+        </li>
+      <% }) %>
+      
+    </ul>
+  </div>
+
+  
+
+  <div class="wrap"><h2>Create a new quiz</h2>
+    <form action="/quiz" method="POST">
+      <input type="text" placeholder="Quiz title" name="title">
+      <button type="submit">Create</button>
+    </form>
+  </div>
+
+
+  
+
+</div>
+
+<footer>
+  Made with &hearts; in Philly | &copy; <a href="http://fsdevkd.com">FsDevKD</a>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/d.css">
+    <title>Edit Item</title>
+</head>
+<body>
+
+<header>
+  <h1>Edit Item</h1>
+  <a href="/users/logout" style="color: #fff; text-decoration: none;" class="log">Logout</a>
+</header>  
+
+<div class="container">
+
+    <div>
+    
+      <li>
+        <%= quiz.title %>
+        <ul>
+          <% quiz.questions.forEach((question, questionIndex) => { %>
+            <li>
+              <%= question.questionText %> - Correct Answer: <%= question.options[question.correctAnswer] %>
+            </li>
+          <% }) %>
+        </ul>
+        <form action="/quiz/<%= quiz._id %>/delete" method="POST">
+          <button type="submit">Delete</button>
+        </form>
+        <div class="wrap">
+        <h2>Create a new question for <%= quiz.title %></h2>
+        <form action="/quiz/<%= quiz._id %>/question" method="POST">
+          <input type="text" placeholder="Question text" name="questionText">
+          <input type="text" placeholder="Option 1" name="options[]">
+          <input type="text" placeholder="Option 2" name="options[]">
+          <input type="number" placeholder="Correct answer index (0-1)" name="correctAnswer">
+          <button type="submit">Create</button>
+        </form>
+        
+        </div>
+      </li>
+   
+    
+  </div>
+
+</div>
+
+<a href="/dashboard" class="wrap">Back to Home</a>
+
+<footer>
+  Made with &hearts; in Philly | &copy; <a href="http://fsdevkd.com">FsDevKD</a>
+</footer>
+
+</body>
+</html>
